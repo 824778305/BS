@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwc.repair3.dao.WorkerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.lwc.repair3.bean.WorkerInfo">
+    <result column="worker_id" jdbcType="VARCHAR" property="workerId" />
+    <result column="worker_name" jdbcType="VARCHAR" property="workerName" />
+    <result column="worker_sex" jdbcType="TINYINT" property="workerSex" />
+    <result column="worker_status" jdbcType="TINYINT" property="workerStatus" />
+    <result column="worker_level" jdbcType="TINYINT" property="workerLevel" />
+    <result column="worke_amount" jdbcType="INTEGER" property="workeAmount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    worker_id, worker_name, worker_sex, worker_status, worker_level, worke_amount
+  </sql>
+  <select id="selectByExample" parameterType="com.lwc.repair3.bean.WorkerInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from worker_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.lwc.repair3.bean.WorkerInfoExample">
+    delete from worker_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lwc.repair3.bean.WorkerInfo">
+    insert into worker_info (worker_id, worker_name, worker_sex, 
+      worker_status, worker_level, worke_amount
+      )
+    values (#{workerId,jdbcType=VARCHAR}, #{workerName,jdbcType=VARCHAR}, #{workerSex,jdbcType=TINYINT}, 
+      #{workerStatus,jdbcType=TINYINT}, #{workerLevel,jdbcType=TINYINT}, #{workeAmount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lwc.repair3.bean.WorkerInfo">
+    insert into worker_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workerId != null">
+        worker_id,
+      </if>
+      <if test="workerName != null">
+        worker_name,
+      </if>
+      <if test="workerSex != null">
+        worker_sex,
+      </if>
+      <if test="workerStatus != null">
+        worker_status,
+      </if>
+      <if test="workerLevel != null">
+        worker_level,
+      </if>
+      <if test="workeAmount != null">
+        worke_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workerId != null">
+        #{workerId,jdbcType=VARCHAR},
+      </if>
+      <if test="workerName != null">
+        #{workerName,jdbcType=VARCHAR},
+      </if>
+      <if test="workerSex != null">
+        #{workerSex,jdbcType=TINYINT},
+      </if>
+      <if test="workerStatus != null">
+        #{workerStatus,jdbcType=TINYINT},
+      </if>
+      <if test="workerLevel != null">
+        #{workerLevel,jdbcType=TINYINT},
+      </if>
+      <if test="workeAmount != null">
+        #{workeAmount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lwc.repair3.bean.WorkerInfoExample" resultType="java.lang.Long">
+    select count(*) from worker_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update worker_info
+    <set>
+      <if test="record.workerId != null">
+        worker_id = #{record.workerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workerName != null">
+        worker_name = #{record.workerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workerSex != null">
+        worker_sex = #{record.workerSex,jdbcType=TINYINT},
+      </if>
+      <if test="record.workerStatus != null">
+        worker_status = #{record.workerStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.workerLevel != null">
+        worker_level = #{record.workerLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.workeAmount != null">
+        worke_amount = #{record.workeAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update worker_info
+    set worker_id = #{record.workerId,jdbcType=VARCHAR},
+      worker_name = #{record.workerName,jdbcType=VARCHAR},
+      worker_sex = #{record.workerSex,jdbcType=TINYINT},
+      worker_status = #{record.workerStatus,jdbcType=TINYINT},
+      worker_level = #{record.workerLevel,jdbcType=TINYINT},
+      worke_amount = #{record.workeAmount,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

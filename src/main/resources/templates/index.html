@@ -1,0 +1,69 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>中大南方后台报修管理系统</title>
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.2.1.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}" />
+    <script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}" ></script>
+</head>
+<body>
+
+    <!--搭建显示页面-->
+    <div class="container">
+        <!--顶部标题-->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>NF-Repair-System</h1>
+            </div>
+        </div>
+
+       <!-- 中间筛选和批量按钮-->
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8">
+                <button type="button" class="btn btn-primary" id="emp_add_modal_btn">新增</button>
+                <button type="button" class="btn btn-danger" id="emp_delete_all_btn">删除</button>
+            </div>
+        </div>
+       <!-- 表格数据-->
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover" id="emps_table">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="check_all"></input></th>
+                        <th>reId</th>
+                        <th>reName</th>
+                        <th>reSite</th>
+                        <th>reItem</th>
+                        <th>reState</th>
+                        <th>createtime</th>
+                        <th>reComment</th>
+                        <th>wkName</th>
+                        <th><button type="button" class="btn btn-primary" >设置</button></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       <!-- 分页信息-->
+    </div>
+
+<script type="text/javascript">
+    function getRootPath(){
+        var strFullPath=window.document.location.href;
+        var strPath=window.document.location.pathname;
+        var pos=strFullPath.indexOf(strPath);
+        var prePath=strFullPath.substring(0,pos);
+        var postPath=strPath.substring(0,strPath.substr(1).indexOf('/')+1);
+        return(postPath);
+    }
+    //alert (getRootPath());
+</script>
+
+</body>
+</html>
